@@ -180,13 +180,18 @@ export function canvasToBlob(
   })
 }
 
-export function createImage(url: string): Promise<HTMLImageElement> {
+export function createImage(
+  url: string,
+  options: Options = {},
+): Promise<HTMLImageElement> {
   return new Promise((resolve, reject) => {
     const img = new Image()
     img.decode = () => resolve(img) as any
     img.onload = () => resolve(img)
     img.onerror = reject
-    img.crossOrigin = 'anonymous'
+    img.crossOrigin = options.imageOptions?.crossOrigin
+      ? options.imageOptions.crossOrigin
+      : 'anonymous'
     img.decoding = 'async'
     img.src = url
   })

@@ -91,4 +91,5 @@ export interface Options {
    *
    */
   fetchRequestInit?: RequestInit
+  imageOptions?: HTMLImageElement
 }
