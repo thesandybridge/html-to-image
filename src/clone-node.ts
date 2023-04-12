@@ -20,13 +20,13 @@ async function cloneVideoElement(video: HTMLVideoElement, options: Options) {
     canvas.height = video.clientHeight
     ctx?.drawImage(video, 0, 0, canvas.width, canvas.height)
     const dataURL = canvas.toDataURL()
-    return createImage(dataURL)
+    return createImage(dataURL, options)
   }
 
   const poster = video.poster
   const contentType = getMimeType(poster)
   const dataURL = await resourceToDataURL(poster, contentType, options)
-  return createImage(dataURL)
+  return createImage(dataURL, options)
 }
 
 async function cloneIFrameElement(iframe: HTMLIFrameElement) {
@@ -133,11 +133,11 @@ function cloneCSSStyle<T extends HTMLElement>(nativeNode: T, clonedNode: T) {
       ) {
         value = 'block'
       }
-      
+
       if (name === 'd' && clonedNode.getAttribute('d')) {
         value = `path(${clonedNode.getAttribute('d')})`
       }
-      
+
       targetStyle.setProperty(
         name,
         value,
