@@ -91,5 +91,12 @@ export interface Options {
    *
    */
   fetchRequestInit?: RequestInit
-  imageOptions?: HTMLImageElement
+
+  /**
+   * Options to pass when creating an image, such as cross-origin.
+   */
+  imageOptions?: {
+    crossOrigin: string | null
+    decoding: 'async' | 'sync' | 'auto'
+  }
 }

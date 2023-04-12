@@ -192,7 +192,9 @@ export function createImage(
     img.crossOrigin = options.imageOptions?.crossOrigin
       ? options.imageOptions.crossOrigin
       : 'anonymous'
-    img.decoding = 'async'
+    img.decoding = options.imageOptions?.decoding
+      ? options.imageOptions.decoding
+      : 'async'
     img.src = url
   })
 }
